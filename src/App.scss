@@ -8,11 +8,25 @@
 
 .App {
   display: flex;
+  flex-direction: column;
   position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+}
+
+$border: 3px solid gray;
+
+.app-header {
+  flex: 0 0 auto;
+  border-bottom: $border;
+}
+
+.app-body {
+  display: flex;
+  flex: 1 1 auto;
+  overflow-y: auto;
 }
 
 .components-list-pane {
@@ -24,14 +38,14 @@
 .designer-pane {
   flex: 1 1 auto;
   overflow-y: auto;
-  border-left: 3px solid gray;
+  border-left: $border;
   padding: 5px;
 }
 
 .properties-editor-pane {
   flex: 0 0 auto;
   overflow-y: auto;
-  border-left: 3px solid gray;
+  border-left: $border;
   padding: 5px;
 }
 

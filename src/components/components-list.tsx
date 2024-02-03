@@ -1,3 +1,4 @@
+import { DragDrop } from "../lib";
 import { AXIComponent } from "../types/types";
 import "./components-list.scss"
 
@@ -15,8 +16,11 @@ export function ComponentsList(props: IProps) {
                         className="component-list-item" 
                         draggable
                         onDragStart={(event) => {
-                            event.dataTransfer.setData("application/json", JSON.stringify(c))
+                            DragDrop.begin(c);
                             event.dataTransfer.dropEffect = "move";
+                        }}
+                        onDragEnd={() => {
+                            DragDrop.end();
                         }}
                         >{c.Name}
                     </div>

@@ -1,5 +1,22 @@
 .designer {
-    width: 100px;
-    height: 100px;
+    width: 100%;
+    padding-bottom: 100px;
     background: salmon;
+}
+
+.designer-bus {
+    border: 2px solid black;
+    padding: 4px;
+    margin-bottom: 10px;
+    height: 50px;
+}
+
+.designed-drop-component {
+    height: 40px;
+    text-align: center;
+    border: 4px dashed blue;
+}
+
+.designed-drop-component-active {
+    border: 4px dashed lime;
 }

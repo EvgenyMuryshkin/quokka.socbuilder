@@ -2,7 +2,7 @@ export interface ITypedObject {
     $type: string;
 }
 
-type nullableString = string | null;
+export type nullableString = string | null;
 
 export class TypedObject implements ITypedObject {
     constructor(type: string) {
@@ -28,12 +28,12 @@ export class Register extends TypedObject {
     static type = "Register"
 } 
 
-export class Buffer extends TypedObject {
+export class MemoryBlock extends TypedObject {
     constructor() {
-        super(Buffer.type);
+        super(MemoryBlock.type);
     }
 
-    static type = "Buffer"
+    static type = "MemoryBlock"
 } 
 
 export class AXIComponent extends TypedObject {
