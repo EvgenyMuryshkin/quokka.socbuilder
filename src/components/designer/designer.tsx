@@ -6,6 +6,7 @@ import { Tools } from "../../lib";
 import { InterconnectComponent } from "./interconnect-component";
 import { GatewayComponent } from "./gateway-component";
 import { SoCBuilder } from "../../lib/socbuilder";
+import { State } from "../../state";
 
 interface IProps {
     soc: SoC;
@@ -55,10 +56,12 @@ export function Designer(props: IProps) {
                         case Interconnect.type: {
                             const withInterconnect = socBuilder.AddInterconnect(soc);
                             onSoCModified(withInterconnect.soc);
+                            State.Selection.value = withInterconnect.interconnect;
                         } break;
                         case Gateway.type: {
                             const withGateway = socBuilder.AddGateway(soc);
                             onSoCModified(withGateway.soc);
+                            State.Selection.value = withGateway.gateway;
                         }
                     }
                 }}                

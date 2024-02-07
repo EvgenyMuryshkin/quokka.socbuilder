@@ -31,6 +31,10 @@ export function DesignerHeaderComponent(props: IProps) {
                     const socBuilder = new SoCBuilder();
                     const removed = socBuilder.Remove(soc, component as SoCComponent);
                     onSoCModified(removed.soc);
+
+                    if (State.Selection.value == component) {
+                        State.Selection.value = null;
+                    }
                 }}/>
             </div>
         </div>

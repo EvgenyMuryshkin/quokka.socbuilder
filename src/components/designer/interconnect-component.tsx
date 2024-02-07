@@ -6,6 +6,7 @@ import { MemoryBlockComponent } from "./memory-block-component";
 import { SoCBuilder } from "../../lib/socbuilder";
 import { RISCVComponent } from "./riscv-component";
 import { DesignerHeaderComponent } from "./designer-header";
+import { State } from "../../state";
 
 interface IProps {
     soc: SoC;
@@ -45,6 +46,7 @@ export function InterconnectComponent(props: IProps) {
                                 })    
                             );
                             onSoCModified(withUpdate.soc);
+                            State.Selection.value = withRegister.register;
                         } break;
                         case MemoryBlock.type: {
                             const withMemoryBlock = socBuilder.AddMemoryBlock(soc);
@@ -55,7 +57,8 @@ export function InterconnectComponent(props: IProps) {
                                     ComponentIds: [...interconnect.ComponentIds, withMemoryBlock.memoryBlock.Id]
                                 })    
                             );
-                            onSoCModified(withUpdate.soc);                        
+                            onSoCModified(withUpdate.soc);     
+                            State.Selection.value = withMemoryBlock.memoryBlock;                    
                         } break;
                         case RISCV.type: {
                             const withRISCV = socBuilder.AddRISCV(soc);
@@ -66,7 +69,8 @@ export function InterconnectComponent(props: IProps) {
                                     ComponentIds: [...interconnect.ComponentIds, withRISCV.riscv.Id]
                                 })    
                             );
-                            onSoCModified(withUpdate.soc);                        
+                            onSoCModified(withUpdate.soc);  
+                            State.Selection.value = withRISCV.riscv;                      
                         } break; 
                     }
                 }}                
