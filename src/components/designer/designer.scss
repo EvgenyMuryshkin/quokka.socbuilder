@@ -1,22 +1,81 @@
 .designer {
     width: 100%;
-    padding-bottom: 100px;
-    background: salmon;
+}
+
+.designer-component-header {
+    border-bottom: 2px solid gray;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.designer-top-level-component {
+    border: 3px solid black;
+    padding: 4px;
+    margin-bottom: 10px;
+    background: #f3f3f3;
+    border-radius: 5px;
 }
 
 .designer-bus {
-    border: 2px solid black;
-    padding: 4px;
-    margin-bottom: 10px;
-    height: 50px;
+    @extend .designer-top-level-component;
+
+    .designer-register,
+    .designer-memory-block {
+        margin-bottom: 10px;
+        margin-right: 5px;
+    }
+}
+
+.designer-bus-components {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.designer-bus-components-panel {
+    flex: 1 1 auto;
+    padding: 5px;
+}
+
+.designer-bus-components-panel-bordered {
+    border-right: 3px solid gray;
+}
+
+.designer-bus-component {
+    background: white;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.designer-register {
+    @extend .designer-bus-component;
+    border: 3px solid green;
+}
+
+.designer-memory-block {
+    @extend .designer-bus-component;
+    border: 3px solid magenta;
+}
+
+.designer-riscv {
+    @extend .designer-bus-component;
+    border: 3px solid orange;
 }
 
 .designed-drop-component {
     height: 40px;
     text-align: center;
-    border: 4px dashed blue;
+    border: 4px dashed black;
+    background: white;
+    font-weight: bold;
+    font-size: large;
+    text-transform: uppercase;
 }
 
 .designed-drop-component-active {
     border: 4px dashed lime;
+}
+
+.designer-gateway {
+    @extend .designer-top-level-component;
 }

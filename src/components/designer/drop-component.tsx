@@ -1,27 +1,20 @@
 import { useState } from "react";
 import { DragDrop, Tools } from "../../lib";
-import { AXIComponent, TypedObject } from "../../types/types";
+import { TypedObject } from "../../types/types";
 
 interface IProps {
     title: string;
-    acceptAXIComponentTypes: string[];
+    canDrop: (payload: TypedObject) => boolean;
+    onDrop: (payload: TypedObject) => void;
 }
 
 export function DropComponent(props: IProps) {
-    const { title, acceptAXIComponentTypes } = props;
+    const { title, canDrop, onDrop } = props;
     const [activeDrop, setActiveDrop] = useState(false);
 
     const canAccept = (event: React.DragEvent<HTMLDivElement>) => {    
         const component = DragDrop.peek<TypedObject>();   
-
-        switch (component?.$type) {
-            case AXIComponent.type: {
-                const axiComponent = DragDrop.peek<AXIComponent>();   
-                return acceptAXIComponentTypes.includes(axiComponent?.Name);
-            }
-        }
-
-        return false;
+        return canDrop(component);
     }
 
     const classes = {
@@ -66,7 +59,7 @@ export function DropComponent(props: IProps) {
 
                     const component = DragDrop.end<TypedObject>();   
 
-                    console.log("DropComponent: drop", component)
+                    onDrop(component);
                 }
             }}
             >{title}</div>

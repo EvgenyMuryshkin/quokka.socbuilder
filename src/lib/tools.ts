@@ -1,4 +1,8 @@
 export class Tools {
+    public static Guid() {
+        return crypto.randomUUID();
+    }
+    
     public static hasValue(value: React.ReactNode) {
         if (!value) return false;
         if (typeof value == "string") {

@@ -9,6 +9,7 @@ function format(value: number)
 {
   return value.toString(16).toUpperCase().padStart(8, "0");
 }
+
 function App() {
   useSignals();
   const [from, setFrom] = useState(0);
@@ -22,27 +23,21 @@ function App() {
       <div className="app-body">
         <div className="components-list-pane">
           <div>
-            <div>
-              <button onClick={() => {
-                const newComponets = [...State.Components.value];
-                for (let i = 0; i < 100; i++)
-                  newComponets.push(new AXIComponent({ Name: i.toString() }))
+            <button onClick={() => {
+              const newComponets = [...State.Components.value];
+              for (let i = 0; i < 100; i++)
+                newComponets.push(new AXIComponent({ Name: i.toString() }))
 
-                State.Components.value = newComponets;
-              }}>Add</button>
-            </div>
-            <ComponentsList components={State.Components.value}/>
+              State.Components.value = newComponets;
+            }}>Add</button>
           </div>
+          <ComponentsList components={State.Components.value}/>
         </div>
         <div className="designer-pane">
-          <div>
-            <p>Designer</p>
-            <Designer/>
-          </div>
+          <Designer soc={State.SoC.value} onSoCModified={soc => State.SoC.value = soc}/>
         </div>
         <div className="properties-editor-pane">
           <div>
-            <p>Props</p>
             <div>Counter: {State.Counter.value}</div>
             <div>
               <button onClick={() => {
