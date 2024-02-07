@@ -32,7 +32,9 @@ export function Designer(props: IProps) {
                     case Gateway.type: {
                         return <GatewayComponent 
                             key={idx} 
-                            gateway={b as Gateway} 
+                            soc={soc}
+                            gateway={b as Gateway}
+                            onSoCModified={onSoCModified}
                         /> 
                     }
                     default: return null;
@@ -60,7 +62,9 @@ export function Designer(props: IProps) {
                         }
                     }
                 }}                
-                />              
+                />      
+
+            <pre>{JSON.stringify(soc, null, 2)}</pre>
         </div>
     )
 }

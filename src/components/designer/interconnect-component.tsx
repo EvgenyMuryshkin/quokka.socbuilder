@@ -5,6 +5,7 @@ import { RegisterComponent } from "./register-component";
 import { MemoryBlockComponent } from "./memory-block-component";
 import { SoCBuilder } from "../../lib/socbuilder";
 import { RISCVComponent } from "./riscv-component";
+import { DesignerHeaderComponent } from "./designer-header";
 
 interface IProps {
     soc: SoC;
@@ -21,7 +22,7 @@ export function InterconnectComponent(props: IProps) {
 
     return (
         <div className="designer-bus">
-            <div className="designer-component-header">Interconnect</div>
+            <DesignerHeaderComponent soc={soc} component={interconnect} onSoCModified={onSoCModified}/>
 
             <DropComponent 
                 title="Drop interconnect components here" 
@@ -76,15 +77,17 @@ export function InterconnectComponent(props: IProps) {
                     <div className="designer-component-header">Masters</div>
                     {
                         masters.map((r, idx) => {
+                            const key = r.Id;
+
                             switch (r.$type) {
                                 case Register.type: {
-                                    return <RegisterComponent key={idx} soc={soc} register={r as Register}/>
+                                    return <RegisterComponent key={key} soc={soc} onSoCModified={onSoCModified} register={r as Register}/>
                                 }
                                 case MemoryBlock.type: {
-                                    return <MemoryBlockComponent key={idx} soc={soc} memoryBlock={r as MemoryBlock}/>
+                                    return <MemoryBlockComponent key={key} soc={soc} onSoCModified={onSoCModified} memoryBlock={r as MemoryBlock}/>
                                 }
                                 case RISCV.type: {
-                                    return <RISCVComponent key={idx} soc={soc} riscv={r as RISCV} />
+                                    return <RISCVComponent key={key} soc={soc} onSoCModified={onSoCModified} riscv={r as RISCV} />
                                 }
                             }
 
@@ -96,15 +99,17 @@ export function InterconnectComponent(props: IProps) {
                     <div className="designer-component-header">Slaves</div>
                     {
                         slaves.map((r, idx) => {
+                            const key = r.Id;
+
                             switch (r.$type) {
                                 case Register.type: {
-                                    return <RegisterComponent key={idx} soc={soc} register={r as Register}/>
+                                    return <RegisterComponent key={key} soc={soc} onSoCModified={onSoCModified} register={r as Register}/>
                                 }
                                 case MemoryBlock.type: {
-                                    return <MemoryBlockComponent key={idx} soc={soc} memoryBlock={r as MemoryBlock}/>
+                                    return <MemoryBlockComponent key={key} soc={soc} onSoCModified={onSoCModified} memoryBlock={r as MemoryBlock}/>
                                 }
                                 case RISCV.type: {
-                                    return <RISCVComponent key={idx} soc={soc} riscv={r as RISCV} />
+                                    return <RISCVComponent key={key} soc={soc} onSoCModified={onSoCModified} riscv={r as RISCV} />
                                 }
                             }
 

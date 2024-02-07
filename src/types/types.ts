@@ -15,6 +15,7 @@ export class TypedObject implements ITypedObject {
 }
 
 export interface IInterconnectComponent extends ITypedObject {
+    Id: string;
     IsMaster: boolean;
     IsSlave: boolean;
 }

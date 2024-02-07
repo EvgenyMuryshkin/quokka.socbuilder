@@ -1,16 +1,18 @@
 import { RISCV, SoC } from "../../types/types";
+import { DesignerHeaderComponent } from "./designer-header";
 
 interface IProps {
     soc: SoC;
     riscv: RISCV;
+    onSoCModified: (soc: SoC) => void;
 }
 
 export function RISCVComponent(props: IProps) {
-    const { soc, riscv } = props;
+    const { soc, riscv, onSoCModified } = props;
 
     return (
         <div className="designer-riscv">
-            <div className="designer-component-header">RISCV</div>
+            <DesignerHeaderComponent soc={soc} component={riscv} onSoCModified={onSoCModified}/>
         </div>
     )
 }

@@ -42,7 +42,42 @@ export class SoCBuilder {
 
     Update(source: SoC, component: SoCComponent) {
         const soc = new SoC();
-        soc.Components = source.Components.map(c => c.Id == component.Id ? component : c);
+        soc.Components = source.Components.map(c => c.Id == component?.Id ? component : c);
+        return { soc, component };
+    }
+
+    Remove(source: SoC, component: SoCComponent) {
+        const componentIds = [component?.Id];
+
+        switch (component?.$type) {
+            case Interconnect.type: {
+                const t = component as Interconnect;
+                componentIds.push(...t.ComponentIds);
+            }
+        }
+
+        const soc = new SoC();
+        soc.Components = source
+            .Components
+            .filter(c => !componentIds.includes(c.Id))
+            .map(c => {
+                switch (c.$type) {
+                    case Interconnect.type: {
+                        const t = c as Interconnect;
+                        if (t.ComponentIds.some(id => componentIds.includes(id))) {
+                            return new Interconnect({
+                                ...t,
+                                ComponentIds: t.ComponentIds.filter(id => !componentIds.includes(id))
+                            });
+                        }
+
+                        return c;
+                    }
+                    default: return c;
+                }    
+            })
+            ;
+
         return { soc, component };
     }
 }

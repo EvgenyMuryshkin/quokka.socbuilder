@@ -1,5 +1,5 @@
 import { signal } from "@preact/signals-react";
-import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../types/types";
+import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC, TypedObject } from "../types/types";
 
 export class AppState {
     Counter = signal(0);
@@ -11,6 +11,7 @@ export class AppState {
         new AXIComponent({Name: MemoryBlock.type}),
     ]);
     SoC = signal(new SoC());
+    Selection = signal<TypedObject>(null);
 }
 
 export const State = new AppState();

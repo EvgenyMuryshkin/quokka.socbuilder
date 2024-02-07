@@ -1,15 +1,18 @@
-import { Gateway } from "../../types/types";
+import { Gateway, SoC } from "../../types/types";
+import { DesignerHeaderComponent } from "./designer-header";
 
 interface IProps {
+    soc: SoC;
     gateway: Gateway;
+    onSoCModified: (soc: SoC) => void;
 }
 
 export function GatewayComponent(props: IProps) {
-    const { gateway } = props;
+    const { soc, gateway, onSoCModified } = props;
 
     return (
         <div className="designer-gateway">
-            <div className="designer-component-header">Gateway</div>
+            <DesignerHeaderComponent soc={soc} component={gateway} onSoCModified={onSoCModified}/>
         </div>
     )
 }
