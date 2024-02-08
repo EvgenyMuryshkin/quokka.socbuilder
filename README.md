@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Getting Started with Quokka SoCBulider
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Visual SoC Builder, will be intergated into Quokka FPGA toolkit to produce inital SoC scaffolding based on AXI Interconnect.
+
+![image](https://github.com/EvgenyMuryshkin/quokka.socbuilder/assets/11254187/6fd04014-7e33-4d98-b844-3b984f650dd8)
 
 ## Available Scripts
 
@@ -39,8 +41,3 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
