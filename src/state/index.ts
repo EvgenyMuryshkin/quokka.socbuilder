@@ -1,5 +1,5 @@
 import { signal } from "@preact/signals-react";
-import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC, TypedObject } from "../types/types";
+import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC, TypedObject } from "../types";
 
 export class AppState {
     Counter = signal(0);

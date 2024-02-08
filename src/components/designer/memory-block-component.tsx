@@ -1,4 +1,5 @@
-import { MemoryBlock, SoC } from "../../types/types"
+import { Tools } from "../../lib";
+import { MemoryBlock, SoC } from "../../types"
 import { DesignerHeaderComponent } from "./designer-header";
 
 interface IProps {
@@ -12,7 +13,7 @@ export function MemoryBlockComponent(props: IProps) {
     return (
         <div className="designer-memory-block">
             <DesignerHeaderComponent soc={soc} component={memoryBlock} onSoCModified={onSoCModified}/>
-            0x10000000-0x10010000
+            {Tools.formatHex(memoryBlock.Address)}-{Tools.formatHex(memoryBlock.Address + memoryBlock.Depth - 4)}
         </div>
     )
 }

@@ -2,7 +2,7 @@ export class Tools {
     public static Guid() {
         return crypto.randomUUID();
     }
-    
+
     public static hasValue(value: React.ReactNode) {
         if (!value) return false;
         if (typeof value == "string") {
@@ -39,5 +39,10 @@ export class Tools {
         catch {
             return null;
         }
+    }
+
+    public static formatHex(value: number)
+    {
+        return "0x" + value.toString(16).toUpperCase().padStart(8, "0");
     }
 }

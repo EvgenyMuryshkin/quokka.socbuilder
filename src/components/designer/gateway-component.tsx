@@ -1,4 +1,4 @@
-import { Gateway, SoC } from "../../types/types";
+import { Gateway, SoC } from "../../types";
 import { DesignerHeaderComponent } from "./designer-header";
 
 interface IProps {

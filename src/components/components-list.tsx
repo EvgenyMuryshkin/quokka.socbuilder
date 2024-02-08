@@ -1,5 +1,5 @@
 import { DragDrop } from "../lib";
-import { AXIComponent } from "../types/types";
+import { AXIComponent } from "../types";
 import "./components-list.scss"
 
 interface IProps {

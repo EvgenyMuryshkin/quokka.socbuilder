@@ -14,14 +14,19 @@ export class TypedObject implements ITypedObject {
     $type: string;
 }
 
-export interface IInterconnectComponent extends ITypedObject {
+export interface ISoCComponent extends ITypedObject {
+
+}
+
+export interface IInterconnectComponent extends ISoCComponent {
     Id: string;
     IsMaster: boolean;
     IsSlave: boolean;
 }
 
-export abstract class SoCComponent extends TypedObject {
+export abstract class SoCComponent extends TypedObject implements ISoCComponent {
     Id: string = Tools.Guid();
+    Name: string = "";
     abstract IsTopLevel: boolean;
 }
 
@@ -34,8 +39,8 @@ export class SoC extends TypedObject {
 
     Components: SoCComponent[] = [];
 
-    getComponent<T>(id: string) {
-        return this.Components.find(c => c.Id == id) as T;
+    getComponent<T extends ISoCComponent>(id: string) {
+        return this.Components.find(c => c.Id == id) as unknown as T;
     }
 } 
 
@@ -83,6 +88,7 @@ export class Register extends SoCComponent implements IInterconnectComponent  {
     IsTopLevel = false;
     IsMaster = false;
     IsSlave = true;
+    Address: number = 0;
 } 
 
 export class MemoryBlock extends SoCComponent implements IInterconnectComponent  {
@@ -95,6 +101,8 @@ export class MemoryBlock extends SoCComponent implements IInterconnectComponent 
     IsTopLevel = false;
     IsMaster = false;
     IsSlave = true;
+    Address: number = 0;
+    Depth: number = 4;
 } 
 
 export class AXIComponent extends TypedObject {

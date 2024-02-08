@@ -3,13 +3,8 @@ import './App.scss';
 import { State } from './state';
 import { useState } from "react";
 import { ComponentsList, Designer } from "./components";
-import { AXIComponent } from "./types/types";
+import { AXIComponent } from "./types";
 import { PropertiesComponent } from "./components";
-
-function format(value: number)
-{
-  return value.toString(16).toUpperCase().padStart(8, "0");
-}
 
 function App() {
   useSignals();

@@ -1,11 +1,11 @@
 import { useState } from "react";
 import "./designer.scss"
-import { AXIComponent, Gateway, Interconnect, RISCV, SoC } from "../../types/types";
+import { AXIComponent, Gateway, Interconnect, RISCV, SoC } from "../../types";
 import { DropComponent } from "./drop-component";
 import { Tools } from "../../lib";
 import { InterconnectComponent } from "./interconnect-component";
 import { GatewayComponent } from "./gateway-component";
-import { SoCBuilder } from "../../lib/socbuilder";
+import { SoCBuilder } from "../../tools/socbuilder";
 import { State } from "../../state";
 
 interface IProps {

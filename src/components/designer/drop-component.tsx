@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { DragDrop, Tools } from "../../lib";
-import { TypedObject } from "../../types/types";
+import { TypedObject } from "../../types";
 
 interface IProps {
     title: string;

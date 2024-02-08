@@ -1,10 +1,11 @@
-import { Glyph, SoCBuilder } from "../../lib";
+import { Glyph } from "../../lib";
 import { State } from "../../state";
-import { Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC, SoCComponent, TypedObject } from "../../types/types";
+import { SoCBuilder } from "../../tools";
+import { Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC, SoCComponent, TypedObject } from "../../types";
 
 interface IProps {
     soc: SoC;
-    component: TypedObject;
+    component: SoCComponent;
     onSoCModified: (soc: SoC) => void;
 }
 
@@ -25,7 +26,7 @@ export function DesignerHeaderComponent(props: IProps) {
         <div 
             className="designer-component-header" 
             onClick={() => State.Selection.value = component}>
-            <div className="designer-component-header-title">{componentHeaders[component.$type]}</div>
+            <div className="designer-component-header-title">{componentHeaders[component.$type]}: {component.Name}</div>
             <div className="designer-component-header-actions">
                 <Glyph icon="remove" onClick={() => {
                     const socBuilder = new SoCBuilder();

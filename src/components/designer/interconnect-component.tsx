@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { AXIComponent, IInterconnectComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types/types";
+import { AXIComponent, IInterconnectComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
 import { DropComponent } from "./drop-component";
 import { RegisterComponent } from "./register-component";
 import { MemoryBlockComponent } from "./memory-block-component";
-import { SoCBuilder } from "../../lib/socbuilder";
+import { SoCBuilder } from "../../tools/socbuilder";
 import { RISCVComponent } from "./riscv-component";
 import { DesignerHeaderComponent } from "./designer-header";
 import { State } from "../../state";
@@ -26,7 +26,7 @@ export function InterconnectComponent(props: IProps) {
             <DesignerHeaderComponent soc={soc} component={interconnect} onSoCModified={onSoCModified}/>
 
             <DropComponent 
-                title="Drop interconnect components here" 
+                title="Drop interconnect components here"
                 canDrop={(payload) => {
                     const component = payload as AXIComponent;
                     return [RISCV.type, Register.type, MemoryBlock.type].includes(component?.Name);
@@ -37,7 +37,7 @@ export function InterconnectComponent(props: IProps) {
 
                     switch (component.Name) {
                         case Register.type: {
-                            const withRegister = socBuilder.AddRegister(soc);
+                            const withRegister = socBuilder.AddRegister(soc, interconnect);
                             const withUpdate = socBuilder.Update(
                                 withRegister.soc, 
                                 new Interconnect({
@@ -49,7 +49,7 @@ export function InterconnectComponent(props: IProps) {
                             State.Selection.value = withRegister.register;
                         } break;
                         case MemoryBlock.type: {
-                            const withMemoryBlock = socBuilder.AddMemoryBlock(soc);
+                            const withMemoryBlock = socBuilder.AddMemoryBlock(soc, interconnect);
                             const withUpdate = socBuilder.Update(
                                 withMemoryBlock.soc, 
                                 new Interconnect({

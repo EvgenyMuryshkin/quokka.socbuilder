@@ -1,4 +1,4 @@
-import { nullableString } from "../types/types";
+import { nullableString } from "../types";
 import { Tools } from "./tools";
 
 export class DragDrop {

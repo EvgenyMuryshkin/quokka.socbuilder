@@ -1,4 +1,4 @@
-import { RISCV, SoC } from "../../types/types";
+import { RISCV, SoC } from "../../types";
 import { DesignerHeaderComponent } from "./designer-header";
 
 interface IProps {
