@@ -1,16 +1,19 @@
-import { Register, TypedObject } from "../../types"
+import { ITypedObject, MemoryBlock, Register, SoCComponent, TypedObject } from "../../types"
+import { MemoryBlockProperties } from "./memory-block-properties";
 import "./properties.scss";
 import { RegisterProperties } from "./register-properties";
 
 interface IProps {
   selection: TypedObject;
+  onUpdate: (object: SoCComponent) => void;
 }
 
 export function PropertiesComponent(props: IProps) {
-  const { selection } = props;
+  const { selection, onUpdate } = props;
 
   const renderer = {
-    [Register.type]: () => <RegisterProperties register={selection as Register}/>
+    [Register.type]: () => <RegisterProperties register={selection as Register} onUpdate={onUpdate}/>,
+    [MemoryBlock.type]: () => <MemoryBlockProperties memoryBlock={selection as MemoryBlock} onUpdate={onUpdate}/>
   }
 
   if (!renderer[selection?.$type]) {

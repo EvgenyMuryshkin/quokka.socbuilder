@@ -1,22 +1,22 @@
 import { useEffect, useState } from "react";
 import { State } from "../../state";
-import { Register } from "../../types";
+import { MemoryBlock, Register } from "../../types";
 import { hexField, numberField, textField } from "./fields";
 
 interface IProps {
-    register: Register;
-    onUpdate: (register: Register) => void;
+    memoryBlock: MemoryBlock;
+    onUpdate: (memoryBlock: MemoryBlock) => void;
 }
 
-export function RegisterProperties(props: IProps) {
-    const { register, onUpdate } = props;
+export function MemoryBlockProperties(props: IProps) {
+    const { memoryBlock, onUpdate } = props;
 
-    const [state, setState] = useState(register);
-    useEffect(() => setState(register), [register]);
+    const [state, setState] = useState(memoryBlock);
+    useEffect(() => setState(memoryBlock), [memoryBlock]);
     
-    if (!register) return null;
+    if (!memoryBlock) return null;
 
-    const update = (diff: Partial<Register>) => setState((state) => new Register({
+    const update = (diff: Partial<MemoryBlock>) => setState((state) => new MemoryBlock({
         ...state,
         ...diff
     }));
@@ -38,6 +38,13 @@ export function RegisterProperties(props: IProps) {
                         (value) => update({ Address: value })
                     )
                 }
+                {
+                    numberField(
+                        "Depth (dec)",
+                        state.Depth,
+                        (value) => update({ Depth: value })
+                    )
+                } 
             </div>
             <div>
                 <button onClick={() => onUpdate(state)}>Update</button>

@@ -5,6 +5,7 @@ import { useState } from "react";
 import { ComponentsList, Designer } from "./components";
 import { AXIComponent } from "./types";
 import { PropertiesComponent } from "./components";
+import { SoCBuilder } from "./tools";
 
 function App() {
   useSignals();
@@ -33,7 +34,14 @@ function App() {
           <Designer soc={State.SoC.value} onSoCModified={soc => State.SoC.value = soc}/>
         </div>
         <div className="properties-editor-pane">
-          <PropertiesComponent selection={State.Selection.value} />
+          <PropertiesComponent 
+            selection={State.Selection.value} 
+            onUpdate={(component) => {
+              const socBuilder = new SoCBuilder();
+              const withUpdate = socBuilder.Update(State.SoC.value, component);
+              State.SoC.value = withUpdate.soc;
+            }}
+            />
         </div>
       </div>
     </div>
