@@ -31,7 +31,8 @@
     @extend .designer-top-level-component;
 
     .designer-register,
-    .designer-memory-block {
+    .designer-memory-block,
+    .designer-riscv {
         margin-bottom: 10px;
         margin-right: 5px;
     }
