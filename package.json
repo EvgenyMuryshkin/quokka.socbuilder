@@ -1,7 +1,8 @@
 {
   "name": "quokka.socbuilder",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "homepage": "",
   "dependencies": {
     "@preact/signals-react": "2.0.0",
     "react": "18.2.0",
