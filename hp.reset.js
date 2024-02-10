@@ -1,5 +1,5 @@
 module.exports = {
     files: 'package.json',
-    from: '"homepage": "https://github.com/EvgenyMuryshkin/quokka.socbuilder"',
+    from: '"homepage": "https://evgenymuryshkin.github.io/quokka.socbuilder"',
     to: '"homepage": ""',
   };
