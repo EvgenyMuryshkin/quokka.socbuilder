@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/quokka.socbuilder/static/css/main.48f128e6.css",
-    "main.js": "/quokka.socbuilder/static/js/main.68ee5acd.js",
+    "main.css": "/quokka.socbuilder/static/css/main.30a862ba.css",
+    "main.js": "/quokka.socbuilder/static/js/main.2c8ac03f.js",
     "static/js/808.5857e04f.chunk.js": "/quokka.socbuilder/static/js/808.5857e04f.chunk.js",
     "index.html": "/quokka.socbuilder/index.html",
-    "main.48f128e6.css.map": "/quokka.socbuilder/static/css/main.48f128e6.css.map",
-    "main.68ee5acd.js.map": "/quokka.socbuilder/static/js/main.68ee5acd.js.map",
+    "main.30a862ba.css.map": "/quokka.socbuilder/static/css/main.30a862ba.css.map",
+    "main.2c8ac03f.js.map": "/quokka.socbuilder/static/js/main.2c8ac03f.js.map",
     "808.5857e04f.chunk.js.map": "/quokka.socbuilder/static/js/808.5857e04f.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.48f128e6.css",
-    "static/js/main.68ee5acd.js"
+    "static/css/main.30a862ba.css",
+    "static/js/main.2c8ac03f.js"
   ]
 }
