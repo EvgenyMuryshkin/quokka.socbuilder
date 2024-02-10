@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { State } from "../../state";
-import { MemoryBlock, Register } from "../../types";
+import { MemoryBlock } from "../../types";
 import { hexField, numberField, textField } from "./fields";
 
 interface IProps {

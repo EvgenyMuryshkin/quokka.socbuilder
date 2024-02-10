@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { AXIComponent, Gateway, ISoCComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
 import { DropComponent } from "./drop-component";
 import { RegisterComponent } from "./register-component";
@@ -26,9 +25,9 @@ export function InterconnectComponent(props: IProps) {
 
     const gateways = soc
         .Components
-        .filter(c => c.$type == Gateway.type)
+        .filter(c => c.$type === Gateway.type)
         .map(c => c as Gateway)
-        .filter(gw => gw.FromInterconnectId == interconnect.Id || gw.ToInterconnectId == interconnect.Id)
+        .filter(gw => gw.FromInterconnectId === interconnect.Id || gw.ToInterconnectId === interconnect.Id)
 
     return (
         <div className="designer-bus">
@@ -109,7 +108,7 @@ export function InterconnectComponent(props: IProps) {
                     }
                     {
                         gateways
-                            .filter(gw => gw.ToInterconnectId == interconnect.Id)
+                            .filter(gw => gw.ToInterconnectId === interconnect.Id)
                             .map(gw => {
                                 const key = gw.Id;
                                 return <InterconectGatewayComponent key={key} soc={soc} interconnect={interconnect} gateway={gw} onSoCModified={onSoCModified}/>
@@ -139,7 +138,7 @@ export function InterconnectComponent(props: IProps) {
                     }
                     {
                         gateways
-                            .filter(gw => gw.FromInterconnectId == interconnect.Id)
+                            .filter(gw => gw.FromInterconnectId === interconnect.Id)
                             .map(gw => {
                                 const key = gw.Id;
                                 return <InterconectGatewayComponent key={key} soc={soc} interconnect={interconnect} gateway={gw} onSoCModified={onSoCModified}/>

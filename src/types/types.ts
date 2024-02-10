@@ -37,7 +37,7 @@ export class SoC extends TypedObject {
     Components: SoCComponent[] = [];
 
     getComponent<T extends ISoCComponent>(id: string) {
-        return this.Components.find(c => c.Id == id) as unknown as T;
+        return this.Components.find(c => c.Id === id) as unknown as T;
     }
 } 
 

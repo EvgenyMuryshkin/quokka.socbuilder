@@ -1,6 +1,5 @@
 import { DragDrop } from "../lib";
 import { ComponentsLibrary } from "../tools";
-import { AXIComponent } from "../types";
 import "./components-list.scss"
 
 interface IProps {
@@ -10,7 +9,7 @@ interface IProps {
 export function ComponentsList(props: IProps) {
     const { componentsLibrary } = props;
     const components = componentsLibrary.getComponents();
-    
+
     return (
         <div>
             {components.map(c => {

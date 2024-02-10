@@ -1,4 +1,3 @@
-import { Tools } from "../../lib";
 import { MemoryBlock, SoC } from "../../types"
 import { DesignerHeaderComponent } from "./designer-header";
 import { AddressRange } from "./designer-tools";

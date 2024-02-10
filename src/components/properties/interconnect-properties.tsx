@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { State } from "../../state";
-import { Gateway, Interconnect, Register, SoC } from "../../types";
-import { hexField, numberField, socIdField, textField } from "./fields";
+import { Interconnect, SoC } from "../../types";
+import { textField } from "./fields";
 
 interface IProps {
     soc: SoC;
@@ -10,7 +10,7 @@ interface IProps {
 }
 
 export function InterconnectProperties(props: IProps) {
-    const { soc, interconnect, onUpdate } = props;
+    const { interconnect, onUpdate } = props;
 
     const [state, setState] = useState(interconnect);
     useEffect(() => setState(interconnect), [interconnect]);

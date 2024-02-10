@@ -1,4 +1,3 @@
-import { Tools } from "../../lib";
 import { Gateway, Interconnect, SoC } from "../../types";
 import { DesignerHeaderComponent } from "./designer-header";
 import { AddressRange } from "./designer-tools";

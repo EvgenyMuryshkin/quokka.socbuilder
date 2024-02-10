@@ -1,7 +1,6 @@
 import { useSignals } from "@preact/signals-react/runtime";
 import './App.scss';
 import { State } from './state';
-import { useState } from "react";
 import { ComponentsList, Designer } from "./components";
 import { AXIComponent } from "./types";
 import { PropertiesComponent } from "./components";
@@ -9,14 +8,12 @@ import { ComponentsLibrary, SoCBuilder } from "./tools";
 
 function App() {
   useSignals();
-  const [from, setFrom] = useState(0);
-  const [to, setTo] = useState(0xFFFFFFFF);
 
   return (
     <div className="App">
       <div className="app-header">
         <div>Quokka SoC Builder</div>
-        <div className="app-header-github"><a href="https://github.com/EvgenyMuryshkin/quokka.socbuilder" target="_blank">https://github.com/EvgenyMuryshkin/quokka.socbuilder</a></div>
+        <div className="app-header-github"><a href="https://github.com/EvgenyMuryshkin/quokka.socbuilder" target="_blank" rel="noreferrer">https://github.com/EvgenyMuryshkin/quokka.socbuilder</a></div>
       </div>
       <div className="app-body">
         <div className="components-list-pane">

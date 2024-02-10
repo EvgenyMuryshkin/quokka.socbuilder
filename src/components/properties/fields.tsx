@@ -31,7 +31,7 @@ export function socIdField(
     value: string,
     onUpdate: (value: string) => void) {
     
-    const components = soc.Components.filter(c => c.$type == type);
+    const components = soc.Components.filter(c => c.$type === type);
 
     return (
         <div>
@@ -39,7 +39,7 @@ export function socIdField(
             <div>
                 <select value={value} onChange={(s) => onUpdate(s.target.value)}>
                     <option>Select ...</option>
-                    {components.map(c => <option value={c.Id} selected={c.Id == value}>{c.Name}</option>)}
+                    {components.map(c => <option value={c.Id} selected={c.Id === value}>{c.Name}</option>)}
                 </select>
             </div>
         </div>

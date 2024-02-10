@@ -1,7 +1,7 @@
 import { Glyph } from "../../lib";
 import { State } from "../../state";
 import { SoCBuilder } from "../../tools";
-import { Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC, SoCComponent, TypedObject } from "../../types";
+import { Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC, SoCComponent } from "../../types";
 
 interface IProps {
     soc: SoC;
@@ -33,7 +33,7 @@ export function DesignerHeaderComponent(props: IProps) {
                     const removed = socBuilder.Remove(soc, component as SoCComponent);
                     onSoCModified(removed.soc);
 
-                    if (State.Selection.value == component) {
+                    if (State.Selection.value === component) {
                         State.Selection.value = null;
                     }
                 }}/>

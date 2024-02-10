@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { State } from "../../state";
 import { Register } from "../../types";
-import { hexField, numberField, textField } from "./fields";
+import { hexField, textField } from "./fields";
 
 interface IProps {
     register: Register;

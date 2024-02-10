@@ -18,10 +18,10 @@ export function InterconectGatewayComponent(props: IProps) {
     return (
         <div className="designer-interconnect-gateway">
             <DesignerHeaderComponent soc={soc} component={gateway} onSoCModified={onSoCModified}/>
-            {fromInterconnect?.Id == interconnect.Id && <AddressRange address={gateway.FromInterconnectAddress} range={gateway.Depth}/>}
-            {fromInterconnect?.Id == interconnect.Id && <div>To: {toInterconnect?.Name}</div>}
-            {toInterconnect?.Id == interconnect.Id && <AddressRange address={gateway.ToInterconnectAddress} range={gateway.Depth}/>}       
-            {toInterconnect?.Id == interconnect.Id && <div>From: {fromInterconnect?.Name}</div>}
+            {fromInterconnect?.Id === interconnect.Id && <AddressRange address={gateway.FromInterconnectAddress} range={gateway.Depth}/>}
+            {fromInterconnect?.Id === interconnect.Id && <div>To: {toInterconnect?.Name}</div>}
+            {toInterconnect?.Id === interconnect.Id && <AddressRange address={gateway.ToInterconnectAddress} range={gateway.Depth}/>}       
+            {toInterconnect?.Id === interconnect.Id && <div>From: {fromInterconnect?.Name}</div>}
         </div>
     )
 }

@@ -1,4 +1,3 @@
-import { Tools } from "../../lib";
 import { Register, SoC } from "../../types"
 import { DesignerHeaderComponent } from "./designer-header";
 import { Address } from "./designer-tools";

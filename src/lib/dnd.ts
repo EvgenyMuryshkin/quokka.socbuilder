@@ -1,6 +1,3 @@
-import { nullableString } from "../types";
-import { Tools } from "./tools";
-
 export class DragDrop {
     private static dragDropPayload: any = null;
 

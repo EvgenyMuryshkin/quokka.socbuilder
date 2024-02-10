@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { State } from "../../state";
-import { Gateway, Interconnect, Register, SoC } from "../../types";
+import { Gateway, Interconnect, SoC } from "../../types";
 import { hexField, numberField, socIdField, textField } from "./fields";
 
 interface IProps {

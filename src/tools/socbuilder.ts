@@ -9,22 +9,16 @@ const componentNamePrefixed = {
 }
 
 export class SoCBuilder {
-    constructor() {
-
-    }
-
     ComponentName(source: SoC, component: SoCComponent) {
         const type = component?.$type;
         if (!componentNamePrefixed[type]) return "";
 
-        const existingNames = source.Components.filter(c => c.$type == type).map(c => c.Name);
+        const existingNames = source.Components.filter(c => c.$type === type).map(c => c.Name);
         
         for (let idx = 1;;idx++) {
             const name = `${componentNamePrefixed[type]}${idx}`;
             if (!existingNames.includes(name)) return name;
         }
-
-        return "";
     }
 
     NextAddress(source: SoC, interconnect: Interconnect) {
@@ -32,8 +26,8 @@ export class SoCBuilder {
 
         const currentAddress = Math.max(
             0,
-            ...components.filter(c => c.$type == Register.type).map(c => c as Register).map(r => r.Address + 4),
-            ...components.filter(c => c.$type == MemoryBlock.type).map(c => c as MemoryBlock).map(r => r.Address + r.Depth),    
+            ...components.filter(c => c.$type === Register.type).map(c => c as Register).map(r => r.Address + 4),
+            ...components.filter(c => c.$type === MemoryBlock.type).map(c => c as MemoryBlock).map(r => r.Address + r.Depth),    
         );
         
         return currentAddress;
@@ -85,7 +79,7 @@ export class SoCBuilder {
 
     Update(source: SoC, component: SoCComponent) {
         const soc = new SoC();
-        soc.Components = source.Components.map(c => c.Id == component?.Id ? component : c);
+        soc.Components = source.Components.map(c => c.Id === component?.Id ? component : c);
         return { soc, component };
     }
 

@@ -1,4 +1,4 @@
-import { Gateway, ITypedObject, Interconnect, MemoryBlock, Register, SoC, SoCComponent, TypedObject } from "../../types"
+import { Gateway, Interconnect, MemoryBlock, Register, SoC, SoCComponent, TypedObject } from "../../types"
 import { GatewayProperties } from "./gateway-properties";
 import { InterconnectProperties } from "./interconnect-properties";
 import { MemoryBlockProperties } from "./memory-block-properties";

@@ -10,17 +10,17 @@ export class ComponentsLibrary {
     }
 
     isTopLevel(obj: ITypedObject) {
-        const info = this.components.find(c => c.Name == obj?.$type);
+        const info = this.components.find(c => c.Name === obj?.$type);
         return info?.IsTopLevel ?? false;
     }
 
     isMaster(obj: ITypedObject) {
-        const info = this.components.find(c => c.Name == obj?.$type);
+        const info = this.components.find(c => c.Name === obj?.$type);
         return info?.IsMaster ?? false;
     }
 
     isSlave(obj: ITypedObject) {
-        const info = this.components.find(c => c.Name == obj?.$type);
+        const info = this.components.find(c => c.Name === obj?.$type);
         return info?.IsSlave ?? false;
     }
 }   

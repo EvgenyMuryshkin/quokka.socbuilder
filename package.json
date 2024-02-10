@@ -18,7 +18,8 @@
     "deploy": "gh-pages -b gh-pages -d build && npm run hp-reset",
     "hp-set": "replace-in-file --configFile=hp.set.js",
     "hp-reset": "replace-in-file --configFile=hp.reset.js",
-    "server": "nodemon server/testserver.js"
+    "server": "nodemon server/testserver.ts",
+    "server1": "ts-node server/testserver.ts"
   },
   "eslintConfig": {
     "extends": [
@@ -52,6 +53,7 @@
     "react-scripts": "5.0.1",
     "replace-in-file": "7.1.0",
     "sass": "1.70.0",
+    "ts-node": "10.9.2",
     "typescript": "5.3.3",
     "web-vitals": "3.5.2"
   },

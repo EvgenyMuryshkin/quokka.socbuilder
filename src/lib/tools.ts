@@ -5,9 +5,9 @@ export class Tools {
 
     public static hasValue(value: React.ReactNode) {
         if (!value) return false;
-        if (typeof value == "string") {
+        if (typeof value === "string") {
             const text = value as string;
-            return (text && text.trim && text.trim() != "") ? true : false;
+            return (text && text.trim && text.trim() !== "") ? true : false;
         }
 
         return true;
@@ -21,7 +21,7 @@ export class Tools {
         return Object.keys(classes)
             .filter(c => Tools.hasValue(c) && classes[c])
             .reduce((p, c) => {
-                if (p != "")
+                if (p !== "")
                     p += " ";
                 p += c;
 
