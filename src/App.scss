@@ -21,6 +21,18 @@ $border: 3px solid gray;
 .app-header {
   flex: 0 0 auto;
   border-bottom: $border;
+  display: flex;
+}
+
+.app-header-github {
+  flex: 1 1 auto;
+  text-align: end;
+  text-decoration: none;
+  margin-right: 5px;
+}
+
+a:-webkit-any-link {
+  text-decoration: none !important;
 }
 
 .app-body {

@@ -16,6 +16,7 @@ function App() {
     <div className="App">
       <div className="app-header">
         <div>Quokka SoC Builder</div>
+        <div className="app-header-github"><a href="https://github.com/EvgenyMuryshkin/quokka.socbuilder" target="_blank">https://github.com/EvgenyMuryshkin/quokka.socbuilder</a></div>
       </div>
       <div className="app-body">
         <div className="components-list-pane">
