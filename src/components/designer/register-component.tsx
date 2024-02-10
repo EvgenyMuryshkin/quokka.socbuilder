@@ -1,6 +1,7 @@
 import { Tools } from "../../lib";
 import { Register, SoC } from "../../types"
 import { DesignerHeaderComponent } from "./designer-header";
+import { Address } from "./designer-tools";
 
 interface IProps {
     soc: SoC; 
@@ -13,7 +14,7 @@ export function RegisterComponent(props: IProps) {
     return (
         <div className="designer-register">
             <DesignerHeaderComponent soc={soc} component={register} onSoCModified={onSoCModified}/>
-            {Tools.formatHex(register.Address)}
+            <Address address={register.Address}/>
         </div>
     )
 }

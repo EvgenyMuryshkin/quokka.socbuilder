@@ -31,6 +31,7 @@ export function MemoryBlockProperties(props: IProps) {
                         (value) => update({ Name: value })
                     )
                 }
+                <hr/>
                 {
                     hexField(
                         "Address (hex)",
@@ -46,6 +47,7 @@ export function MemoryBlockProperties(props: IProps) {
                     )
                 } 
             </div>
+            <hr/>
             <div>
                 <button onClick={() => onUpdate(state)}>Update</button>
                 <button onClick={() => State.Selection.value = null}>Cancel</button>

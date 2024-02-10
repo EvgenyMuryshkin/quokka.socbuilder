@@ -32,7 +32,8 @@
 
     .designer-register,
     .designer-memory-block,
-    .designer-riscv {
+    .designer-riscv,
+    .designer-interconnect-gateway {
         margin-bottom: 10px;
         margin-right: 5px;
     }
@@ -58,19 +59,26 @@
     padding: 5px;
 }
 
+$designer-component-border-width: 5px;
+
 .designer-register {
     @extend .designer-bus-component;
-    border: 3px solid green;
+    border: $designer-component-border-width solid green;
 }
 
 .designer-memory-block {
     @extend .designer-bus-component;
-    border: 3px solid magenta;
+    border: $designer-component-border-width solid magenta;
 }
 
 .designer-riscv {
     @extend .designer-bus-component;
-    border: 3px solid orange;
+    border: $designer-component-border-width solid orange;
+}
+
+.designer-interconnect-gateway {
+    @extend .designer-bus-component;
+    border: $designer-component-border-width solid blue;
 }
 
 .designed-drop-component {

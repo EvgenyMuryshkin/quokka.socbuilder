@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AXIComponent, IInterconnectComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
+import { AXIComponent, Gateway, IInterconnectComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
 import { DropComponent } from "./drop-component";
 import { RegisterComponent } from "./register-component";
 import { MemoryBlockComponent } from "./memory-block-component";
@@ -7,6 +7,7 @@ import { SoCBuilder } from "../../tools/socbuilder";
 import { RISCVComponent } from "./riscv-component";
 import { DesignerHeaderComponent } from "./designer-header";
 import { State } from "../../state";
+import { InterconectGatewayComponent } from "./interconnect-gateway-component";
 
 interface IProps {
     soc: SoC;
@@ -20,6 +21,12 @@ export function InterconnectComponent(props: IProps) {
     const interconnectComponents = interconnect.ComponentIds.map(id => soc.getComponent<IInterconnectComponent>(id));
     const masters = interconnectComponents.filter(c => c.IsMaster);
     const slaves = interconnectComponents.filter(c => c.IsSlave);
+
+    const gateways = soc
+        .Components
+        .filter(c => c.$type == Gateway.type)
+        .map(c => c as Gateway)
+        .filter(gw => gw.FromInterconnectId == interconnect.Id || gw.ToInterconnectId == interconnect.Id)
 
     return (
         <div className="designer-bus">
@@ -80,7 +87,7 @@ export function InterconnectComponent(props: IProps) {
                 <div className="designer-bus-components-panel designer-bus-components-panel-bordered">
                     <div className="designer-component-header">Masters</div>
                     {
-                        masters.map((r, idx) => {
+                        masters.map(r => {
                             const key = r.Id;
 
                             switch (r.$type) {
@@ -97,6 +104,14 @@ export function InterconnectComponent(props: IProps) {
 
                             return null;
                         })
+                    }
+                    {
+                        gateways
+                            .filter(gw => gw.ToInterconnectId == interconnect.Id)
+                            .map(gw => {
+                                const key = gw.Id;
+                                return <InterconectGatewayComponent key={key} soc={soc} interconnect={interconnect} gateway={gw} onSoCModified={onSoCModified}/>
+                            })
                     }
                 </div>
                 <div className="designer-bus-components-panel">
@@ -119,6 +134,14 @@ export function InterconnectComponent(props: IProps) {
 
                             return null;
                         })                        
+                    }
+                    {
+                        gateways
+                            .filter(gw => gw.FromInterconnectId == interconnect.Id)
+                            .map(gw => {
+                                const key = gw.Id;
+                                return <InterconectGatewayComponent key={key} soc={soc} interconnect={interconnect} gateway={gw} onSoCModified={onSoCModified}/>
+                            })
                     }
                 </div>
             </div>

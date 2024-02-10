@@ -35,6 +35,7 @@ function App() {
         </div>
         <div className="properties-editor-pane">
           <PropertiesComponent 
+            soc={State.SoC.value}
             selection={State.Selection.value} 
             onUpdate={(component) => {
               const socBuilder = new SoCBuilder();

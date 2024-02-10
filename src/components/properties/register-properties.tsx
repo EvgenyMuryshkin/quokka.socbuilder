@@ -31,6 +31,7 @@ export function RegisterProperties(props: IProps) {
                         (value) => update({ Name: value })
                     )
                 }
+                <hr/>
                 {
                     hexField(
                         "Address (hex)",
@@ -39,6 +40,7 @@ export function RegisterProperties(props: IProps) {
                     )
                 }
             </div>
+            <hr/>
             <div>
                 <button onClick={() => onUpdate(state)}>Update</button>
                 <button onClick={() => State.Selection.value = null}>Cancel</button>

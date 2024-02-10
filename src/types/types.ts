@@ -24,6 +24,10 @@ export interface IInterconnectComponent extends ISoCComponent {
     IsSlave: boolean;
 }
 
+export interface IInterconnectAddressComponent {
+    Address: number;
+}
+
 export abstract class SoCComponent extends TypedObject implements ISoCComponent {
     Id: string = Tools.Guid();
     Name: string = "";
@@ -76,9 +80,17 @@ export class Gateway extends SoCComponent {
 
     static type = "Gateway";
     IsTopLevel = true;
+    
+    FromInterconnectId: string = null;
+    FromInterconnectAddress: number = 0;
+
+    ToInterconnectId: string = null;
+    ToInterconnectAddress: number = 0;
+
+    Depth: number = 4;
 } 
 
-export class Register extends SoCComponent implements IInterconnectComponent  {
+export class Register extends SoCComponent implements IInterconnectComponent, IInterconnectAddressComponent  {
     constructor(init?: Partial<Register>) {
         super(Register.type);
         if (init) Object.assign(this, init);
@@ -91,7 +103,7 @@ export class Register extends SoCComponent implements IInterconnectComponent  {
     Address: number = 0;
 } 
 
-export class MemoryBlock extends SoCComponent implements IInterconnectComponent  {
+export class MemoryBlock extends SoCComponent implements IInterconnectComponent, IInterconnectAddressComponent  {
     constructor(init?: Partial<MemoryBlock>) {
         super(MemoryBlock.type);
         if (init) Object.assign(this, init);
