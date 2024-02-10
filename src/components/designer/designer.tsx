@@ -7,16 +7,18 @@ import { InterconnectComponent } from "./interconnect-component";
 import { GatewayComponent } from "./gateway-component";
 import { SoCBuilder } from "../../tools/socbuilder";
 import { State } from "../../state";
+import { ComponentsLibrary } from "../../tools";
 
 interface IProps {
+    componentsLibrary: ComponentsLibrary;
     soc: SoC;
     onSoCModified: (soc: SoC) => void;
 }
 
 export function Designer(props: IProps) {
-    const { soc, onSoCModified } = props;
+    const { componentsLibrary, soc, onSoCModified } = props;
 
-    const topLevelComponents = soc.Components.filter(c => c.IsTopLevel);
+    const topLevelComponents = soc.Components.filter(c => componentsLibrary.isTopLevel(c));
 
     return (
         <div className="designer">   
@@ -24,6 +26,7 @@ export function Designer(props: IProps) {
                 switch (b.$type) {
                     case Interconnect.type: {
                         return <InterconnectComponent 
+                            componentsLibrary={componentsLibrary}
                             key={idx} 
                             soc={soc} 
                             interconnect={b as Interconnect} 

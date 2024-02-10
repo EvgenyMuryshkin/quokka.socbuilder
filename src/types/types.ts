@@ -15,13 +15,7 @@ export class TypedObject implements ITypedObject {
 }
 
 export interface ISoCComponent extends ITypedObject {
-
-}
-
-export interface IInterconnectComponent extends ISoCComponent {
     Id: string;
-    IsMaster: boolean;
-    IsSlave: boolean;
 }
 
 export interface IInterconnectAddressComponent {
@@ -31,7 +25,6 @@ export interface IInterconnectAddressComponent {
 export abstract class SoCComponent extends TypedObject implements ISoCComponent {
     Id: string = Tools.Guid();
     Name: string = "";
-    abstract IsTopLevel: boolean;
 }
 
 export class SoC extends TypedObject {
@@ -48,16 +41,13 @@ export class SoC extends TypedObject {
     }
 } 
 
-export class RISCV extends SoCComponent implements IInterconnectComponent {
+export class RISCV extends SoCComponent {
     constructor(init?: Partial<RISCV>) {
         super(RISCV.type);
         if (init) Object.assign(this, init);
     }
 
     static type = "RISCV";
-    IsTopLevel = false;
-    IsMaster = true;
-    IsSlave = false;
 } 
 
 export class Interconnect extends SoCComponent {
@@ -67,7 +57,6 @@ export class Interconnect extends SoCComponent {
     }
 
     static type = "Interconnect";
-    IsTopLevel = true;
 
     ComponentIds: string[] = [];
 } 
@@ -79,7 +68,6 @@ export class Gateway extends SoCComponent {
     }
 
     static type = "Gateway";
-    IsTopLevel = true;
     
     FromInterconnectId: string = null;
     FromInterconnectAddress: number = 0;
@@ -90,29 +78,23 @@ export class Gateway extends SoCComponent {
     Depth: number = 4;
 } 
 
-export class Register extends SoCComponent implements IInterconnectComponent, IInterconnectAddressComponent  {
+export class Register extends SoCComponent implements IInterconnectAddressComponent  {
     constructor(init?: Partial<Register>) {
         super(Register.type);
         if (init) Object.assign(this, init);
     }
 
     static type = "Register";
-    IsTopLevel = false;
-    IsMaster = false;
-    IsSlave = true;
     Address: number = 0;
 } 
 
-export class MemoryBlock extends SoCComponent implements IInterconnectComponent, IInterconnectAddressComponent  {
+export class MemoryBlock extends SoCComponent implements IInterconnectAddressComponent  {
     constructor(init?: Partial<MemoryBlock>) {
         super(MemoryBlock.type);
         if (init) Object.assign(this, init);
     }
 
     static type = "MemoryBlock";
-    IsTopLevel = false;
-    IsMaster = false;
-    IsSlave = true;
     Address: number = 0;
     Depth: number = 4;
 } 
@@ -126,4 +108,6 @@ export class AXIComponent extends TypedObject {
     static type = "AXIComponent";
     Name: nullableString = null; 
     IsTopLevel: boolean = false;
+    IsMaster: boolean = false;
+    IsSlave: boolean = false;
 } 

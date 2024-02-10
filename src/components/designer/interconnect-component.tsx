@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { AXIComponent, Gateway, IInterconnectComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
+import { AXIComponent, Gateway, ISoCComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
 import { DropComponent } from "./drop-component";
 import { RegisterComponent } from "./register-component";
 import { MemoryBlockComponent } from "./memory-block-component";
@@ -8,19 +8,21 @@ import { RISCVComponent } from "./riscv-component";
 import { DesignerHeaderComponent } from "./designer-header";
 import { State } from "../../state";
 import { InterconectGatewayComponent } from "./interconnect-gateway-component";
+import { ComponentsLibrary } from "../../tools";
 
 interface IProps {
+    componentsLibrary: ComponentsLibrary;
     soc: SoC;
     interconnect: Interconnect;
     onSoCModified: (soc: SoC) => void;
 }
 
 export function InterconnectComponent(props: IProps) {
-    const { soc, interconnect, onSoCModified } = props;
+    const { componentsLibrary, soc, interconnect, onSoCModified } = props;
 
-    const interconnectComponents = interconnect.ComponentIds.map(id => soc.getComponent<IInterconnectComponent>(id));
-    const masters = interconnectComponents.filter(c => c.IsMaster);
-    const slaves = interconnectComponents.filter(c => c.IsSlave);
+    const interconnectComponents = interconnect.ComponentIds.map(id => soc.getComponent<ISoCComponent>(id));
+    const masters = interconnectComponents.filter(c => componentsLibrary.isMaster(c));
+    const slaves = interconnectComponents.filter(c => componentsLibrary.isSlave(c));
 
     const gateways = soc
         .Components

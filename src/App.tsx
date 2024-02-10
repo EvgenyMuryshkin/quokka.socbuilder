@@ -5,7 +5,7 @@ import { useState } from "react";
 import { ComponentsList, Designer } from "./components";
 import { AXIComponent } from "./types";
 import { PropertiesComponent } from "./components";
-import { SoCBuilder } from "./tools";
+import { ComponentsLibrary, SoCBuilder } from "./tools";
 
 function App() {
   useSignals();
@@ -22,17 +22,21 @@ function App() {
         <div className="components-list-pane">
           <div>
             <button onClick={() => {
-              const newComponets = [...State.Components.value];
+              const newComponets = [...State.Components.value.getComponents()];
               for (let i = 0; i < 100; i++)
                 newComponets.push(new AXIComponent({ Name: i.toString() }))
 
-              State.Components.value = newComponets;
+              State.Components.value = new ComponentsLibrary(newComponets);
             }}>Add</button>
           </div>
-          <ComponentsList components={State.Components.value}/>
+          <ComponentsList componentsLibrary={State.Components.value}/>
         </div>
         <div className="designer-pane">
-          <Designer soc={State.SoC.value} onSoCModified={soc => State.SoC.value = soc}/>
+          <Designer 
+            componentsLibrary={State.Components.value}
+            soc={State.SoC.value} 
+            onSoCModified={soc => State.SoC.value = soc}
+          />
         </div>
         <div className="properties-editor-pane">
           <PropertiesComponent 
