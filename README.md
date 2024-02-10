@@ -2,6 +2,8 @@
 
 Visual SoC Builder, will be intergated into Quokka FPGA toolkit to produce inital SoC scaffolding based on AXI Interconnect.
 
+[DEMO](https://evgenymuryshkin.github.io/quokka.socbuilder)
+
 ![image](https://github.com/EvgenyMuryshkin/quokka.socbuilder/assets/11254187/6fd04014-7e33-4d98-b844-3b984f650dd8)
 
 ## Available Scripts
