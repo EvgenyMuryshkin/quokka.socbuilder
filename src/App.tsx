@@ -2,17 +2,33 @@ import { useSignals } from "@preact/signals-react/runtime";
 import './App.scss';
 import { State } from './state';
 import { ComponentsList, Designer } from "./components";
-import { AXIComponent } from "./types";
 import { PropertiesComponent } from "./components";
 import { ComponentsLibrary, SoCBuilder } from "./tools";
+import { Glyph } from "./lib";
+import { useEffect } from "react";
+import { AXIComponent } from "./types";
+import { APIClient } from "./tools/api-client";
+
+async function loadComponents() {
+  State.Components.value = await APIClient.getComponents(4000);
+}
 
 function App() {
   useSignals();
+  useEffect(() => { loadComponents() }, []);
 
   return (
     <div className="App">
       <div className="app-header">
-        <div>Quokka SoC Builder</div>
+        <div className="app-header-title">Quokka SoC Builder</div>
+        <div className="app-header-toolbar">
+          <Glyph 
+            icon="upload" 
+            onClick={async () => {
+              await APIClient.socUpdate(4000, State.SoC.value);
+            }} 
+          />
+        </div>
         <div className="app-header-github"><a href="https://github.com/EvgenyMuryshkin/quokka.socbuilder" target="_blank" rel="noreferrer">https://github.com/EvgenyMuryshkin/quokka.socbuilder</a></div>
       </div>
       <div className="app-body">

@@ -24,6 +24,21 @@ $border: 3px solid gray;
   display: flex;
 }
 
+.app-header-title {
+  margin-right: 10px;
+  font-size: large;
+  font-weight: bold;
+}
+
+.app-header-toolbar {
+  display: flex;
+
+  * {
+    margin-top: auto;
+    margin-bottom: auto;
+  }
+}
+
 .app-header-github {
   flex: 1 1 auto;
   text-align: end;

@@ -1,7 +1,7 @@
-import { BsXLg } from "react-icons/bs";
+import { BsUpload, BsXLg } from "react-icons/bs";
 import { IconBaseProps } from "react-icons";
 
-export type glyphIcon = "remove";
+export type glyphIcon = "remove" | "upload";
 
 interface IProps {
     icon: glyphIcon;
@@ -20,6 +20,7 @@ export function Glyph(props: IProps) {
 
     switch (icon) {
         case "remove": return <BsXLg {...iconProps} />;
+        case "upload": return <BsUpload {...iconProps}/>
         default: return null;
     }
 }

@@ -1,7 +1,7 @@
 import { AXIComponent, ITypedObject } from "../types";
 
 export class ComponentsLibrary {
-    constructor(private components: AXIComponent[]) {
+    constructor(private components: AXIComponent[] = []) {
 
     }
 

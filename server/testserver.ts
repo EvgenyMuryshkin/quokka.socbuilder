@@ -1,10 +1,14 @@
 import express, { Express, Request, Response } from "express";
+import cors from "cors";
+
 import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register } from "../src/types"
 import { ComponentsLibrary } from "../src/tools"
 
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+
 const PORT = process.env.PORT || 4000;
 
 app.get("/status", (request, response) => {
@@ -25,6 +29,12 @@ app.get("/components", (request, response) => {
     ])
     
     response.send(library.getComponents());
+});
+
+app.post("/soc/update", (request, response) => {
+    const soc = request.body;
+    console.log(JSON.stringify(soc, null, 2));
+    response.send({});
 });
 
 app.listen(PORT, () => {
