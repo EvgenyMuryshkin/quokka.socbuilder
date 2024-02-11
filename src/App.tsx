@@ -10,22 +10,35 @@ import { AXIComponent } from "./types";
 import { APIClient } from "./tools/api-client";
 
 async function loadComponents() {
-  State.Components.value = await APIClient.getComponents(4000);
+  State.Components.value = await APIClient.getComponents();
+}
+
+async function checkConnection() {
+  State.Connection.value = await APIClient.checkConnection();
 }
 
 function App() {
   useSignals();
-  useEffect(() => { loadComponents() }, []);
+  useEffect(() => { 
+    APIClient.port = 4000;
+    loadComponents();
+    checkConnection();
+  }, []);
 
   return (
     <div className="App">
       <div className="app-header">
         <div className="app-header-title">Quokka SoC Builder</div>
         <div className="app-header-toolbar">
+          {
+            State.Connection.value
+            ? <div className="app-header-connection-online">ONLINE</div>
+            : <div className="app-header-connection-offline">OFFLINE</div>
+          }
           <Glyph 
             icon="upload" 
             onClick={async () => {
-              await APIClient.socUpdate(4000, State.SoC.value);
+              await APIClient.socUpdate(State.SoC.value);
             }} 
           />
         </div>

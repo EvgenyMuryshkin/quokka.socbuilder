@@ -24,6 +24,22 @@ $border: 3px solid gray;
   display: flex;
 }
 
+.app-header-connection {
+  margin-right: 10px;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.app-header-connection-online {
+  @extend .app-header-connection;
+  color: green;
+}
+
+.app-header-connection-offline {
+  @extend .app-header-connection;
+  color: red;
+}
+
 .app-header-title {
   margin-right: 10px;
   font-size: large;

@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000;
 
 app.get("/status", (request, response) => {
     const status = {
-       "Status": "Running"
+       "status": true
     };
     
     response.send(status);

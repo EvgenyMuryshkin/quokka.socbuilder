@@ -2,7 +2,23 @@ import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC 
 import { ComponentsLibrary } from "./components-library";
 
 export class  APIClient {
-    static async getComponents(port: number) {
+    static port: number = 0;
+    
+    static async checkConnection() {
+        const port = APIClient.port;
+
+        try {
+            const response = await fetch(`http://localhost:${port}/status`);
+            const status = await response.json();
+            return status?.status ?? false;
+        }
+        catch {
+            return false;
+        }
+    }
+
+    static async getComponents() {
+        const port = APIClient.port;
         try {
             const response = await fetch(`http://localhost:${port}/components`);
             const components = await response.json();
@@ -19,7 +35,9 @@ export class  APIClient {
           }
     }
 
-    static async socUpdate(port: number, soc: SoC) {
+    static async socUpdate(soc: SoC) {
+        const port = APIClient.port;
+
         const json = JSON.stringify(soc);
 
         const url = `http://localhost:${port}/soc/update`;

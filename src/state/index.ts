@@ -4,6 +4,7 @@ import { ComponentsLibrary } from "../tools";
 
 export class AppState {
     Counter = signal(0);
+    Connection = signal(false);
     Components = signal(new ComponentsLibrary());
     SoC = signal(new SoC());
     Selection = signal<TypedObject>(null);
