@@ -1,4 +1,4 @@
-import { AXIComponent, Gateway, ISoCComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
+import { SoCComponentInfo, Gateway, ISoCComponent, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../../types";
 import { DropComponent } from "./drop-component";
 import { RegisterComponent } from "./register-component";
 import { MemoryBlockComponent } from "./memory-block-component";
@@ -36,11 +36,11 @@ export function InterconnectComponent(props: IProps) {
             <DropComponent 
                 title="Drop interconnect components here"
                 canDrop={(payload) => {
-                    const component = payload as AXIComponent;
+                    const component = payload as SoCComponentInfo;
                     return [RISCV.type, Register.type, MemoryBlock.type].includes(component?.Name);
                 }}
                 onDrop={(payload) => {
-                    const component = payload as AXIComponent;
+                    const component = payload as SoCComponentInfo;
                     const socBuilder = new SoCBuilder();
 
                     switch (component.Name) {

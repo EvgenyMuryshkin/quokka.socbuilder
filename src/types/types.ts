@@ -32,7 +32,7 @@ export class SoC extends TypedObject {
         super(SoC.type);
     }
 
-    static type = "SoC";
+    static type = "soc.SoC, soc";
 
     Components: SoCComponent[] = [];
 
@@ -47,7 +47,7 @@ export class RISCV extends SoCComponent {
         if (init) Object.assign(this, init);
     }
 
-    static type = "RISCV";
+    static type = "soc.RISCV, soc";
 } 
 
 export class Interconnect extends SoCComponent {
@@ -56,7 +56,7 @@ export class Interconnect extends SoCComponent {
         if (init) Object.assign(this, init);
     }
 
-    static type = "Interconnect";
+    static type = "soc.Interconnect, soc";
 
     ComponentIds: string[] = [];
 } 
@@ -67,7 +67,7 @@ export class Gateway extends SoCComponent {
         if (init) Object.assign(this, init);
     }
 
-    static type = "Gateway";
+    static type = "soc.Gateway, soc";
     
     FromInterconnectId: string = null;
     FromInterconnectAddress: number = 0;
@@ -84,7 +84,7 @@ export class Register extends SoCComponent implements IInterconnectAddressCompon
         if (init) Object.assign(this, init);
     }
 
-    static type = "Register";
+    static type = "soc.Register, soc";
     Address: number = 0;
 } 
 
@@ -94,19 +94,20 @@ export class MemoryBlock extends SoCComponent implements IInterconnectAddressCom
         if (init) Object.assign(this, init);
     }
 
-    static type = "MemoryBlock";
+    static type = "soc.MemoryBlock, soc";
     Address: number = 0;
     Depth: number = 4;
 } 
 
-export class AXIComponent extends TypedObject {
-    constructor(init?: Partial<AXIComponent>) {
-        super(AXIComponent.type);
+export class SoCComponentInfo extends TypedObject {
+    constructor(init?: Partial<SoCComponentInfo>) {
+        super(SoCComponentInfo.type);
         if (init) Object.assign(this, init);
     }
  
-    static type = "AXIComponent";
+    static type = "soc.SoCComponentInfo, soc";
     Name: nullableString = null; 
+    DisplayName: nullableString = null; 
     IsTopLevel: boolean = false;
     IsMaster: boolean = false;
     IsSlave: boolean = false;

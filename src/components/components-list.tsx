@@ -25,7 +25,7 @@ export function ComponentsList(props: IProps) {
                         onDragEnd={() => {
                             DragDrop.end();
                         }}
-                        >{c.Name}
+                        >{c.DisplayName ?? c.Name}
                     </div>
                 )
             })}

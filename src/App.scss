@@ -55,6 +55,12 @@ $border: 3px solid gray;
   }
 }
 
+.app-header-toolbar-command {
+  padding: 5px;
+  border: 2px solid lightgray;
+  margin-right: 3px;
+}
+
 .app-header-github {
   flex: 1 1 auto;
   text-align: end;

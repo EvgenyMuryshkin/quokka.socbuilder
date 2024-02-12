@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import cors from "cors";
 
-import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register } from "../src/types"
+import { SoCComponentInfo, Gateway, Interconnect, MemoryBlock, RISCV, Register } from "../src/types"
 import { ComponentsLibrary } from "../src/tools"
 
 const app = express();
@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 4000;
 
 app.get("/status", (request, response) => {
     const status = {
-       "status": true
+       "Status": true
     };
     
     response.send(status);
@@ -21,11 +21,11 @@ app.get("/status", (request, response) => {
 
 app.get("/components", (request, response) => {
     const library = new ComponentsLibrary([
-        new AXIComponent({Name: Interconnect.type, IsTopLevel: true}),
-        new AXIComponent({Name: Gateway.type, IsTopLevel: true}),
-        new AXIComponent({Name: RISCV.type, IsMaster: true}),
-        new AXIComponent({Name: Register.type, IsSlave: true}),
-        new AXIComponent({Name: MemoryBlock.type, IsSlave: true}),
+        new SoCComponentInfo({Name: Interconnect.type, IsTopLevel: true}),
+        new SoCComponentInfo({Name: Gateway.type, IsTopLevel: true}),
+        new SoCComponentInfo({Name: RISCV.type, IsMaster: true}),
+        new SoCComponentInfo({Name: Register.type, IsSlave: true}),
+        new SoCComponentInfo({Name: MemoryBlock.type, IsSlave: true}),
     ])
     
     response.send(library.getComponents());

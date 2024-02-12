@@ -6,7 +6,7 @@ import { PropertiesComponent } from "./components";
 import { ComponentsLibrary, SoCBuilder } from "./tools";
 import { Glyph } from "./lib";
 import { useEffect } from "react";
-import { AXIComponent } from "./types";
+import { SoCComponentInfo } from "./types";
 import { APIClient } from "./tools/api-client";
 
 async function loadComponents() {
@@ -20,7 +20,10 @@ async function checkConnection() {
 function App() {
   useSignals();
   useEffect(() => { 
-    APIClient.port = 4000;
+    const urlParams = new URLSearchParams(window.location.search);
+    const port = parseInt(urlParams.get("port")) ?? 0;
+    console.log(port);
+    APIClient.port = port;
     loadComponents();
     checkConnection();
   }, []);
@@ -33,10 +36,18 @@ function App() {
           {
             State.Connection.value
             ? <div className="app-header-connection-online">ONLINE</div>
-            : <div className="app-header-connection-offline">OFFLINE</div>
+            : <div className="app-header-connection-offline">OFFLINE (Port: {APIClient.port})</div>
           }
           <Glyph 
+            icon="refresh" 
+            className="app-header-toolbar-command"
+            onClick={async () => {
+              await loadComponents();
+            }} 
+          />
+          <Glyph 
             icon="upload" 
+            className="app-header-toolbar-command"
             onClick={async () => {
               await APIClient.socUpdate(State.SoC.value);
             }} 
@@ -50,7 +61,7 @@ function App() {
             <button onClick={() => {
               const newComponets = [...State.Components.value.getComponents()];
               for (let i = 0; i < 100; i++)
-                newComponets.push(new AXIComponent({ Name: i.toString() }))
+                newComponets.push(new SoCComponentInfo({ Name: i.toString() }))
 
               State.Components.value = new ComponentsLibrary(newComponets);
             }}>Add</button>

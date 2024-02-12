@@ -1,5 +1,5 @@
 import "./designer.scss"
-import { AXIComponent, Gateway, Interconnect, SoC } from "../../types";
+import { SoCComponentInfo, Gateway, Interconnect, SoC } from "../../types";
 import { DropComponent } from "./drop-component";
 import { InterconnectComponent } from "./interconnect-component";
 import { GatewayComponent } from "./gateway-component";
@@ -46,11 +46,11 @@ export function Designer(props: IProps) {
             <DropComponent 
                 title="Drop top level component here" 
                 canDrop={(payload) => {
-                    const component = payload as AXIComponent;
+                    const component = payload as SoCComponentInfo;
                     return component.IsTopLevel;
                 }}
                 onDrop={(payload) => {
-                    const component = payload as AXIComponent;
+                    const component = payload as SoCComponentInfo;
                     const socBuilder = new SoCBuilder();
                     
                     switch (component?.Name) {

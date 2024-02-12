@@ -1,4 +1,4 @@
-import { AXIComponent, Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../types";
+import { SoCComponentInfo, Gateway, Interconnect, MemoryBlock, RISCV, Register, SoC } from "../types";
 import { ComponentsLibrary } from "./components-library";
 
 export class  APIClient {
@@ -10,7 +10,7 @@ export class  APIClient {
         try {
             const response = await fetch(`http://localhost:${port}/status`);
             const status = await response.json();
-            return status?.status ?? false;
+            return status?.Status ?? false;
         }
         catch {
             return false;
@@ -26,11 +26,11 @@ export class  APIClient {
           }
           catch {
             return new ComponentsLibrary([
-              new AXIComponent({Name: Interconnect.type, IsTopLevel: true}),
-              new AXIComponent({Name: Gateway.type, IsTopLevel: true}),
-              new AXIComponent({Name: RISCV.type, IsMaster: true}),
-              new AXIComponent({Name: Register.type, IsSlave: true}),
-              new AXIComponent({Name: MemoryBlock.type, IsSlave: true}),
+              new SoCComponentInfo({Name: Interconnect.type, DisplayName: "Interconnect", IsTopLevel: true}),
+              new SoCComponentInfo({Name: Gateway.type, DisplayName: "Gateway", IsTopLevel: true}),
+              new SoCComponentInfo({Name: RISCV.type, DisplayName: "RISCV", IsMaster: true}),
+              new SoCComponentInfo({Name: Register.type, DisplayName: "Register", IsSlave: true}),
+              new SoCComponentInfo({Name: MemoryBlock.type, DisplayName: "MemoryBlock", IsSlave: true}),
             ]);
           }
     }

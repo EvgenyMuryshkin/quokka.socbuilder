@@ -1,16 +1,18 @@
-import { BsUpload, BsXLg } from "react-icons/bs";
+import { BsUpload, BsXLg, BsArrowClockwise } from "react-icons/bs";
 import { IconBaseProps } from "react-icons";
 
-export type glyphIcon = "remove" | "upload";
+export type glyphIcon = "remove" | "upload" | "refresh";
 
 interface IProps {
     icon: glyphIcon;
+    className?: string;
     onClick?: () => void;
 }
 
 export function Glyph(props: IProps) {
-    const { icon, onClick } = props;
+    const { icon, className, onClick } = props;
     const iconProps: IconBaseProps = {
+        className,
         onClick: (e) => {
             e.stopPropagation();
             e.preventDefault();
@@ -21,6 +23,7 @@ export function Glyph(props: IProps) {
     switch (icon) {
         case "remove": return <BsXLg {...iconProps} />;
         case "upload": return <BsUpload {...iconProps}/>
+        case "refresh": return <BsArrowClockwise {...iconProps}/>
         default: return null;
     }
 }
