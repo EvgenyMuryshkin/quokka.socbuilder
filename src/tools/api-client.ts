@@ -36,20 +36,25 @@ export class  APIClient {
     }
 
     static async socUpdate(soc: SoC) {
-        const port = APIClient.port;
+        try {
+            const port = APIClient.port;
 
-        const json = JSON.stringify(soc);
-
-        const url = `http://localhost:${port}/soc/update`;
-
-        const response = await fetch(url, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: json
-          });
-
-          return response.json(); // parses JSON response into native JavaScript objects
+            const json = JSON.stringify(soc);
+    
+            const url = `http://localhost:${port}/soc/update`;
+    
+            const response = await fetch(url, {
+                method: "POST",
+                headers: {
+                  "Content-Type": "application/json",
+                },
+                body: json
+              });
+            const status = await response.json();
+            return status?.Status ?? false;
+        }
+        catch {
+            return false;
+        }
     }
 }
